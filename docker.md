@@ -91,7 +91,7 @@ SIZE		大小
 
 **docker rmi** 删除镜像
 
-```shell
+​```shell
  docker rmi -f 镜像id  #删除指定的镜像
  docker rmi -f 镜像id 镜像id 镜像id #删除多个镜像
  docker rmi -f $(docker images)   #删除所有镜像
@@ -172,6 +172,67 @@ docker run -d centos  #启动后,发现centos停止了
 **查看日志**
 
 ```shell
+docker logs -f -t --tail 10 容器没有日志
+
+# 自己编写一段shell脚本
+docker run -d centos /bin/sh -c "while true;do echo zk leader;sleep 1;done"
+
+# docker ps
+CONTAINER ID   IMAGE       
+fceefb41ede5   centos
+
+# 显示日志
+-tf				#
+--tail number	#要显示日志条数
+
+docker logs -tf --tail 10 fceefb41ede5
+```
+
+
+
+**查看容器中进程信息ps**
+
+```
+# docker top fceefb41ede5
+UID                 PID                 PPID             
+root                918                 886                
+root                1752                918
+```
+
+**查看镜像的元数据**
+
+```shell
+# docker inspect 容器id
+```
+
+
+
+**进入当前正在运行的容器**
+
+```shell
+# docker exec -it 容器id /bin/bash
+
+```
+
+
+
+**从容器内拷贝文件到主机上**
+
+```shell
+# docker cp 容器id:path/file /targetPath
+[root@izbp1c7wd9bt3v83tqidp2z zk]# docker cp fceefb41ede5:/a.zk /zk
+[root@izbp1c7wd9bt3v83tqidp2z zk]# ls
+a.zk  docker
+```
+
+
+
+> **docker 安装nginx**
+
+```shell
+1、 docker pull nginx  #拉取最新的镜像
+2、 docker run -d -p 8088:80 nginx  #指定端口后台启动
+
 ```
 
 
