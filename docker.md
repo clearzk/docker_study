@@ -85,6 +85,16 @@ IMAGE ID	镜像的id
 CREATED		创建时间
 SIZE		大小
 
+**构建镜像**
+```shell
+#1、编写Dockerfile文件
+#2、再Dockerfile所在目录构建镜像：docker build -t nginx:v1 .
+#3、通过镜像启动容器：docker run -it -P nginx:v1 /bin/bash
+```
+
+
+
+
 **docker search** 搜索镜像
 
 **docker pull** 下载镜像
